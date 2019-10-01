@@ -27,7 +27,7 @@ extension Process {
     ///
     /// - Parameter args: The arguments to pass to `xcrun`.
     @discardableResult
-    func xcrun(_ args: String...) -> String {
+    func xcrun(_ args: String...) -> Data {
         self.launchPath = "/usr/bin/xcrun"
         self.arguments = args
 
@@ -38,25 +38,20 @@ extension Process {
         self.waitUntilExit()
 
         let data = pipe.fileHandleForReading.readDataToEndOfFile()
-
-        guard let output = String(data: data, encoding: .utf8) else {
-            return ""
-        }
-        return output
+        return data
     }
 
     /// Executes `xcrun simctl list devices`
     @discardableResult
-    func xcrun_list_devices() -> String {
-        return self.xcrun("simctl", "list", "devices")
+    func xcrun_list_devices() -> Data {
+        return self.xcrun("simctl", "list", "devices", "-j")
     }
 
     /// Executes `xcrun simctl status_bar` on the specified device.
     ///
     /// - Parameter device: The device for which status bar values should be overridden.
-    @discardableResult
-    func xcrun_fix_status_bar(_ device: String) -> String {
-        return self.xcrun(
+    func xcrun_fix_status_bar(_ device: String) {
+        self.xcrun(
             "simctl", "status_bar", device, "override",
             "--time", "9:41",
             "--dataNetwork", "wifi",
@@ -72,36 +67,23 @@ extension Process {
 
 print("Fixing status bars...")
 
-let devicesList = Process().xcrun_list_devices()
-let devices = devicesList.split(separator: "\n").map { String($0) }
+let deviceData = Process().xcrun_list_devices()
+let json = (try! JSONSerialization.jsonObject(with: deviceData, options: [])) as! Dictionary<String, Any>
+let runtimes = json["devices"] as! Dictionary<String, Array<Any>>
+let allDevices = runtimes.values.flatMap { $0 } as! Array<Dictionary<String, AnyHashable>>
 
-/// Regex to match the device identifier in device list.
-///
-/// == Example ==
-/// input: "iPhone X (10939DAA-4FBA-489A-AAF3-555E224146B1) (Shutdown)"
-/// match: "(10939DAA-4FBA-489A-AAF3-555E224146B1)"
-let regex = try! NSRegularExpression(pattern: #"(\(([\w\-]{36})\))"#, options: [])
-
-// flag to track if no simulators are running
 var fixed = false
 
-devices.forEach {
-    let count = $0.count
-    let rangeOfMatch = regex.rangeOfFirstMatch(in: $0, options: [], range: $0.nsRange)
+allDevices.forEach {
+    let available = $0["isAvailable"] as! Bool
+    let name = $0["name"] as! String
+    let state = $0["state"] as! String
+    let udid = $0["udid"] as! String
 
-    if rangeOfMatch.location != NSNotFound {
-        let deviceName = $0.dropLast(count - rangeOfMatch.location).byTrimmingWhiteSpace
-        let deviceID = $0
-            .dropFirst(rangeOfMatch.lowerBound + 1) // + 1 to remove the "("
-            .dropLast(count - rangeOfMatch.lowerBound - rangeOfMatch.length + 1) // +1 to remove the ")"
-            .byTrimmingWhiteSpace
-        let deviceStatus = $0.dropFirst(rangeOfMatch.upperBound).byTrimmingWhiteSpace
-
-        if deviceStatus.contains("Booted") {
-            Process().xcrun_fix_status_bar(deviceID)
-            print("✅ \(deviceName), \(deviceID)")
-            fixed = true
-        }
+    if available && state != "Shutdown" {
+        Process().xcrun_fix_status_bar(udid)
+        print("✅ \(name), \(udid)")
+        fixed = true
     }
 }
 

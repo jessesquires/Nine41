@@ -1,5 +1,13 @@
 #!/usr/bin/swift
 
+//
+//  GitHub
+//  https://github.com/jessesquires/Nine41
+//
+//  Copyright © 2019 Jesse Squires
+//  https://www.jessesquires.com
+//
+
 import Foundation
 
 extension String {

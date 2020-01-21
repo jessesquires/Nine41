@@ -18,6 +18,17 @@ However, it has some issues:
 
 This script fixes that. It overrides the status bars for all currently running simulators using "Apple's defaults" &mdash; full cellular bars, full wifi bars, full battery, and `9:41` for the time.
 
+## Contributing
+
+Interested in making contributions to this project? Please review the guides below.
+
+- [Contributing Guidelines](https://github.com/jessesquires/.github/blob/master/CONTRIBUTING.md)
+- [Code of Conduct](https://github.com/jessesquires/.github/blob/master/CODE_OF_CONDUCT.md)
+- [Support and Help](https://github.com/jessesquires/.github/blob/master/SUPPORT.md)
+- [Security Policy](https://github.com/jessesquires/.github/blob/master/SECURITY.md)
+
+Also, consider [sponsoring this project](https://www.jessesquires.com/sponsor/) or [buying my apps](https://www.hexedbits.com)! :v:
+
 ## License
 
 Released under an [MIT License](https://opensource.org/licenses/MIT). See `LICENSE` for details.

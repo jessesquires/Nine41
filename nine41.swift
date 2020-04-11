@@ -50,7 +50,10 @@ extension Process {
     /// Executes `xcrun simctl status_bar` on the specified device.
     ///
     /// - Parameter device: The device for which status bar values should be overridden.
-    func xcrun_fix_status_bar(_ device: String, time: String) {
+    func xcrun_fix_status_bar(_ device: String) {
+        let magicDate = Date(timeIntervalSince1970: 1168364460) // 9:41 AM PT on Tuesday January 9, 2007
+        let time = ISO8601DateFormatter().string(from: magicDate)
+
         self.xcrun(
             "simctl", "status_bar", device, "override",
             "--time", time,
@@ -63,22 +66,6 @@ extension Process {
             "--batteryLevel", "100"
         )
     }
-
-    func get_time_in_current_time_zone(_ timestamp: Int) -> String {
-        self.launchPath = "/usr/bin/env"
-        self.arguments = ["date", "-r", String(timestamp), "+%FT%T%z"]
-
-        let pipe = Pipe()
-        self.standardOutput = pipe
-
-        self.launch()
-        self.waitUntilExit()
-
-        let data = pipe.fileHandleForReading.readDataToEndOfFile()
-        let output: String = NSString(data: data, encoding: String.Encoding.utf8.rawValue)! as String
-
-        return output
-    }
 }
 
 print("Fixing status bars...")
@@ -87,9 +74,6 @@ let deviceData = Process().xcrun_list_devices()
 let json = (try! JSONSerialization.jsonObject(with: deviceData, options: [])) as! Dictionary<String, Any>
 let runtimes = json["devices"] as! Dictionary<String, Array<Any>>
 let allDevices = runtimes.values.flatMap { $0 } as! Array<Dictionary<String, AnyHashable>>
-
-// 9:41 AM PT on Tuesday January 9, 2007
-let magicTime = Process().get_time_in_current_time_zone(1168364460)
 
 var fixed = false
 
@@ -100,7 +84,7 @@ allDevices.forEach {
     let udid = $0["udid"] as! String
 
     if available && state != "Shutdown" {
-        Process().xcrun_fix_status_bar(udid, time: magicTime)
+        Process().xcrun_fix_status_bar(udid)
         print("✅ \(name), \(udid)")
         fixed = true
     }

@@ -1,4 +1,5 @@
-# Nine41
+# Nine41 ![CI](https://github.com/jessesquires/Nine41/workflows/CI/badge.svg)
+
 *Automate overriding the status bars for all running iOS simulators*
 
 ## About

@@ -15,6 +15,9 @@ let package = Package(
     platforms: [
         .macOS(.v10_15)
     ],
+    products: [
+        .executable(name: "nine41", targets: ["Nine41"])
+    ],
     targets: [
         .target(
             name: "Nine41",

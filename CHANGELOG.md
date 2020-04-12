@@ -15,6 +15,8 @@ The changelog for `Nine41`. Also see the [releases](https://github.com/jessesqui
 
 - Setup Danger for project ([#9](https://github.com/jessesquires/Nine41/issues/9), [@jessesquires](https://github.com/jessesquires))
 
+- Override the operator (carrier) name to be the empty string ([#8](https://github.com/jessesquires/Nine41/issues/8), [@jessesquires](https://github.com/jessesquires))
+
 1.0
 ---
 

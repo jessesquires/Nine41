@@ -64,7 +64,8 @@ extension Process {
             "--cellularMode", "active",
             "--cellularBars", "4",
             "--batteryState", "charged",
-            "--batteryLevel", "100"
+            "--batteryLevel", "100",
+            "--operatorName", " "
         )
     }
 }

@@ -17,7 +17,7 @@ However, it has some issues:
 * The numerous override options are difficult to remember
 * There are no sensible defaults
 
-This script fixes that. It overrides the status bars for all currently running simulators using "Apple's defaults" &mdash; full cellular bars, full wifi bars, full battery, and `9:41` for the time.
+This script fixes most of those issues. It overrides the status bars for all currently running simulators using "Apple's defaults" &mdash; full cellular bars, full wifi bars, full battery, no "carrier" name, and `9:41` for the time.
 
 ## Requirements
 

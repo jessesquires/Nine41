@@ -2,6 +2,11 @@
 
 The changelog for `Nine41`. Also see the [releases](https://github.com/jessesquires/Nine41/releases) on GitHub.
 
+2.0.1
+-----
+
+- Added an `.executable` product to the Swift package ([@jessesquires](https://github.com/jessesquires))
+
 2.0.0
 -----
 

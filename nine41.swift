@@ -51,9 +51,12 @@ extension Process {
     ///
     /// - Parameter device: The device for which status bar values should be overridden.
     func xcrun_fix_status_bar(_ device: String) {
+        let magicDate = Date(timeIntervalSince1970: 1168364460) // 9:41 AM PT on Tuesday January 9, 2007
+        let time = ISO8601DateFormatter().string(from: magicDate)
+
         self.xcrun(
             "simctl", "status_bar", device, "override",
-            "--time", "9:41",
+            "--time", time,
             "--dataNetwork", "wifi",
             "--wifiMode", "active",
             "--wifiBars", "3",

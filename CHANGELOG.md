@@ -2,8 +2,8 @@
 
 The changelog for `Nine41`. Also see the [releases](https://github.com/jessesquires/Nine41/releases) on GitHub.
 
-2.0
----
+2.0.0
+-----
 
 - Now requires Xcode 11.4
 

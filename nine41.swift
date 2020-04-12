@@ -12,13 +12,13 @@ import Foundation
 
 extension String {
     var nsRange: NSRange {
-        return NSRange(location: 0, length: self.count)
+        NSRange(location: 0, length: self.count)
     }
 }
 
 extension StringProtocol {
     var byTrimmingWhiteSpace: String {
-        return self.trimmingCharacters(in: .whitespacesAndNewlines)
+        self.trimmingCharacters(in: .whitespacesAndNewlines)
     }
 }
 
@@ -44,14 +44,15 @@ extension Process {
     /// Executes `xcrun simctl list devices`
     @discardableResult
     func xcrun_list_devices() -> Data {
-        return self.xcrun("simctl", "list", "devices", "-j")
+        self.xcrun("simctl", "list", "devices", "-j")
     }
 
     /// Executes `xcrun simctl status_bar` on the specified device.
     ///
     /// - Parameter device: The device for which status bar values should be overridden.
     func xcrun_fix_status_bar(_ device: String) {
-        let magicDate = Date(timeIntervalSince1970: 1168364460) // 9:41 AM PT on Tuesday January 9, 2007
+        // 9:41 AM PT on Tuesday January 9, 2007
+        let magicDate = Date(timeIntervalSince1970: 1_168_364_460)
         let time = ISO8601DateFormatter().string(from: magicDate)
 
         self.xcrun(
@@ -71,9 +72,9 @@ extension Process {
 print("Fixing status bars...")
 
 let deviceData = Process().xcrun_list_devices()
-let json = (try! JSONSerialization.jsonObject(with: deviceData, options: [])) as! Dictionary<String, Any>
-let runtimes = json["devices"] as! Dictionary<String, Array<Any>>
-let allDevices = runtimes.values.flatMap { $0 } as! Array<Dictionary<String, AnyHashable>>
+let json = (try? JSONSerialization.jsonObject(with: deviceData, options: [])) as! [String: Any]
+let runtimes = json["devices"] as! [String: [Any]]
+let allDevices = runtimes.values.flatMap { $0 } as! [[String: AnyHashable]]
 
 var fixed = false
 

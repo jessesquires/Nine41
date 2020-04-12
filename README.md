@@ -25,6 +25,35 @@ This script fixes most of those issues. It overrides the status bars for all cur
 - Xcode 11.4+
 - [SwiftLint](https://github.com/realm/SwiftLint)
 
+## Usage
+
+After cloning the repo, you can create a custom bash command:
+
+```bash
+function nine41() {
+  swift run --package-path /PATH/TO/Nine41/
+}
+```
+
+Then you can run this from the command line. 
+
+Example run with 2 open simulators:
+
+```bash
+$ nine41
+Fixing status bars...
+✅ iPhone 8, 65A6C323-E74D-452C-B85E-7F576259E022
+✅ iPhone 11, 52E8FAD0-7743-4F85-AA2E-26E4C1275F38
+```
+
+Example run with no open simulators:
+
+```bash
+$ nine41
+Fixing status bars...
+❌ No simulators are running. Launch the iOS simulator first.
+```
+
 ## Contributing
 
 Interested in making contributions to this project? Please review the guides below.

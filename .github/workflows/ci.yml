@@ -12,8 +12,8 @@ env:
   DEVELOPER_DIR: /Applications/Xcode_11.4.app/Contents/Developer
 
 jobs:
-  job-compile:
-    name: Compile
+  job-build-and-run:
+    name: Build and Run
     runs-on: macOS-latest
     steps:
       - name: git checkout
@@ -21,11 +21,14 @@ jobs:
 
       - name: xcode version
         run: xcodebuild -version -sdk
-      
+
       - name: list simulators
         run: |
           xcrun simctl delete unavailable
           xcrun simctl list
 
-      - name: compile
-        run: swiftc nine41.swift
+      - name: swift build
+        run: swift build
+
+      - name: swift run
+        run: swift run

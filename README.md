@@ -6,8 +6,9 @@
 
 Blog posts:
 
-* [Overriding status bar display settings in the iOS simulator](https://www.jessesquires.com/blog/2019/09/26/overriding-status-bar-settings-ios-simulator/)
+* [Fully automating perfect status bar overrides for iOS simulators with Nine41](https://www.jessesquires.com/blog/2020/04/13/fully-automating-perfect-status-bar-overrides-for-ios-simulators/)
 * [A script to automate overriding iOS simulator status bar values](https://www.jessesquires.com/blog/2019/09/30/automating-simctl-status-bar/)
+* [Overriding status bar display settings in the iOS simulator](https://www.jessesquires.com/blog/2019/09/26/overriding-status-bar-settings-ios-simulator/)
 
 [Xcode 11](https://developer.apple.com/documentation/xcode_release_notes/xcode_11_release_notes) shipped with `simctl status_bar`, a tool to override the status bar values in the simulator so you can take perfect screenshots.
 

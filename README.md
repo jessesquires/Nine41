@@ -25,6 +25,20 @@ This script fixes most of those issues. It overrides the status bars for all cur
 - Xcode 11.4+
 - [SwiftLint](https://github.com/realm/SwiftLint)
 
+## Installation
+
+### [Swift Package Manager](https://swift.org/package-manager/)
+
+Add `Nine41` to the `dependencies` value of your `Package.swift`.
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/jessesquires/Nine41.git", from: "2.0.1")
+]
+```
+
+Alternatively, you can add the package [directly via Xcode](https://developer.apple.com/documentation/xcode/adding_package_dependencies_to_your_app).
+
 ## Usage
 
 After cloning the repo, you can create a custom bash command:
@@ -53,6 +67,19 @@ $ nine41
 Fixing status bars...
 ❌ No simulators are running. Launch the iOS simulator first.
 ```
+
+## Automation with Xcode build phases
+
+As described [in this post](https://www.jessesquires.com/blog/2020/04/13/fully-automating-perfect-status-bar-overrides-for-ios-simulators/), you can automate your perfect status bars using Xcode build phases.
+
+1. Add the Swift package to your Xcode project
+2. Add a "Run Script" build phase with the following:
+
+```bash
+/usr/bin/xcrun --sdk macosx swift run --package-path "${BUILD_ROOT}/../../SourcePackages/checkouts/Nine41"
+```
+
+3. Build and run. Note that simulators must be booted for the script to work.
 
 ## Contributing
 

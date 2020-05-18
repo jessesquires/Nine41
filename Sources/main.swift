@@ -22,6 +22,7 @@ extension StringProtocol {
     }
 }
 
+#if os(OSX)
 extension Process {
     /// Creates a process to execute `xcrun`.
     ///
@@ -95,3 +96,4 @@ allDevices.forEach {
 if !fixed {
     print("❌ No simulators are running. Launch the iOS simulator first.")
 }
+#endif

@@ -37,6 +37,10 @@ dependencies: [
 ]
 ```
 
+### CocoaPods
+
+pod 'Nine41'
+
 Alternatively, you can add the package [directly via Xcode](https://developer.apple.com/documentation/xcode/adding_package_dependencies_to_your_app).
 
 ## Usage
@@ -75,8 +79,14 @@ As described [in this post](https://www.jessesquires.com/blog/2020/04/13/fully-a
 1. Add the Swift package to your Xcode project
 2. Add a "Run Script" build phase with the following:
 
+If installed via Swift Package Manager, use:
 ```bash
 /usr/bin/xcrun --sdk macosx swift run --package-path "${BUILD_ROOT}/../../SourcePackages/checkouts/Nine41"
+```
+
+For CocoaPods installations, use:
+```bash
+/usr/bin/xcrun --sdk macosx swift "${PODS_ROOT}/Nine41/Sources/main.swift"
 ```
 
 3. Build and run. Note that simulators must be booted for the script to work.

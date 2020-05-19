@@ -52,8 +52,8 @@ extension Process {
     /// - Parameter device: The device for which status bar values should be overridden.
     func xcrun_fix_status_bar(_ device: String) {
         // 9:41 AM PT on Tuesday January 9, 2007
-        let date = Date(timeIntervalSince1970: 1_168_364_460)
-        let timeText = ISO8601DateFormatter().string(from: date)
+        
+        let timeText = generateStatusBarTime()
 
         self.xcrun(
             "simctl", "status_bar", device, "override",
@@ -67,6 +67,15 @@ extension Process {
             "--batteryLevel", "100",
             "--operatorName", " "
         )
+    }
+
+    fileprivate func generateStatusBarTime() -> String {
+    	let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        dateFormatter.timeZone = TimeZone.current
+        dateFormatter.locale = Locale.current
+        let date = dateFormatter.date(from: "2007-01-09T09:41:00")!
+        return ISO8601DateFormatter().string(from: date)
     }
 }
 

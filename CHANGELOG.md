@@ -9,6 +9,8 @@ The changelog for `Nine41`. Also see the [releases](https://github.com/jessesqui
 
 - Fixed issue where "9:41" would display incorrect date/time in timezones outside of US Pacific. ([#13](https://github.com/jessesquires/Nine41/issues/13), [@aoenth](https://github.com/aoenth))
 
+- Added support for CocoaPods. See `README` for instructions. ([#12](https://github.com/jessesquires/Nine41/issues/12), [@ricsantos](https://github.com/ricsantos))
+
 2.0.1
 -----
 

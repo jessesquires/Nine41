@@ -10,6 +10,8 @@
 
 import Foundation
 
+#if os(OSX)
+
 extension String {
     var nsRange: NSRange {
         NSRange(location: 0, length: self.count)
@@ -103,3 +105,5 @@ allDevices.forEach {
 if !fixed {
     print("❌ No simulators are running. Launch the iOS simulator first.")
 }
+
+#endif

@@ -2,6 +2,11 @@
 
 The changelog for `Nine41`. Also see the [releases](https://github.com/jessesquires/Nine41/releases) on GitHub.
 
+2.1.0
+-----
+
+- Fixed issue where script might hang. ([#11](https://github.com/jessesquires/Nine41/issues/11), [@jessesquires](https://github.com/jessesquires))
+
 2.0.1
 -----
 

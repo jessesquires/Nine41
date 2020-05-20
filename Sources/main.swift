@@ -35,9 +35,8 @@ extension Process {
         self.standardOutput = pipe
 
         self.launch()
-        self.waitUntilExit()
-
         let data = pipe.fileHandleForReading.readDataToEndOfFile()
+        self.waitUntilExit()
         return data
     }
 

@@ -7,6 +7,8 @@ The changelog for `Nine41`. Also see the [releases](https://github.com/jessesqui
 
 - Fixed issue where script might hang. ([#11](https://github.com/jessesquires/Nine41/issues/11), [@jessesquires](https://github.com/jessesquires))
 
+- Fixed issue where "9:41" would display incorrect date/time in timezones outside of US Pacific. ([#13](https://github.com/jessesquires/Nine41/issues/13), [@aoenth](https://github.com/aoenth))
+
 2.0.1
 -----
 

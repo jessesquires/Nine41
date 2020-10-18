@@ -5,7 +5,12 @@ The changelog for `Nine41`. Also see the [releases](https://github.com/jessesqui
 NEXT
 -----
 
-- Swift 5.3
+- TBA
+
+2.2.0
+-----
+
+- Update to Swift 5.3 ([@jessesquires](https://github.com/jessesquires))
 
 2.1.0
 -----

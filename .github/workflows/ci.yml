@@ -3,13 +3,14 @@ name: CI
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
     branches:
-      - master
+      - main
 
 env:
-  DEVELOPER_DIR: /Applications/Xcode_11.5.app/Contents/Developer
+  # https://github.com/actions/virtual-environments/tree/main/images/macos
+  DEVELOPER_DIR: /Applications/Xcode_12.app/Contents/Developer
 
 jobs:
   job-build-and-run:
@@ -17,7 +18,7 @@ jobs:
     runs-on: macOS-latest
     steps:
       - name: git checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
 
       - name: xcode version
         run: xcodebuild -version -sdk

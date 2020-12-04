@@ -19,21 +19,15 @@ end
 # -----------------------------------------------------------------------------
 # All pull requests need a description
 # -----------------------------------------------------------------------------
-if github.pr_body.length < 15
+if github.pr_body.length < 25
     fail("Please provide a detailed summary in the pull request description.")
 end
 
 # -----------------------------------------------------------------------------
-# Fail on TODOs in code
+# All pull requests should be submitted to main
 # -----------------------------------------------------------------------------
-todoist.message = "Oops! We should not commit TODOs. Please fix them before merging."
-todoist.fail_for_todos
-
-# -----------------------------------------------------------------------------
-# All pull requests should be submitted to master branch
-# -----------------------------------------------------------------------------
-if github.branch_for_base != "master"
-    warn("Pull requests should be submitted to the master branch only.")
+if github.branch_for_base != "main"
+    warn("Pull requests should be submitted to the `main` branch only.")
 end
 
 # -----------------------------------------------------------------------------
@@ -49,6 +43,29 @@ end
 # -----------------------------------------------------------------------------
 has_milestone = github.pr_json["milestone"] != nil
 warn('All pull requests should have a milestone.', sticky: false) unless has_milestone
+
+# -----------------------------------------------------------------------------
+# Verify correct `pod install` and `bundle install`
+# -----------------------------------------------------------------------------
+def files_changed_as_set(files)
+    changed_files = files.select { |file| git.modified_files.include? file }
+    not_changed_files = files.select { |file| !changed_files.include? file }
+    all_files_changed = not_changed_files.empty?
+    no_files_changed = changed_files.empty?
+    return all_files_changed || no_files_changed
+end
+
+# Verify proper pod install
+pod_files = ["Podfile", "Podfile.lock", "Pods/Manifest.lock"]
+if !files_changed_as_set(pod_files)
+    fail("CocoaPods error: #{pod_files} should all be changed at the same time. Run `pod install` and commit the changes to fix.")
+end
+
+# Verify proper bundle install
+gem_files = ["Gemfile", "Gemfile.lock"]
+if !files_changed_as_set(gem_files)
+    fail("Bundler error: #{gem_files} should all be changed at the same time. Run `bundle install` and commit the changes to fix.")
+end
 
 # -----------------------------------------------------------------------------
 # Lint all changed markdown files

@@ -2,6 +2,8 @@
 
 *Automate overriding the status bars for all running iOS simulators*
 
+![perfect status bar](https://raw.githubusercontent.com/jessesquires/Nine41/main/screenshot.png)
+
 ## About
 
 Blog posts:

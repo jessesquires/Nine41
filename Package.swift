@@ -1,4 +1,4 @@
-// swift-tools-version:5.3
+// swift-tools-version:5.4
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 //  GitHub
@@ -19,9 +19,10 @@ let package = Package(
         .executable(name: "nine41", targets: ["Nine41"])
     ],
     targets: [
-        .target(
+        .executableTarget(
             name: "Nine41",
-            path: "Sources")
+            path: "Sources"
+        )
     ],
     swiftLanguageVersions: [.v5]
 )

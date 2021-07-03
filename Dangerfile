@@ -24,10 +24,10 @@ if github.pr_body.length < 25
 end
 
 # -----------------------------------------------------------------------------
-# All pull requests should be submitted to main
+# All pull requests should be submitted to main branch
 # -----------------------------------------------------------------------------
 if github.branch_for_base != "main"
-    warn("Pull requests should be submitted to the `main` branch only.")
+    warn("Pull requests should be submitted to the main branch only.")
 end
 
 # -----------------------------------------------------------------------------
@@ -45,6 +45,16 @@ has_milestone = github.pr_json["milestone"] != nil
 warn('All pull requests should have a milestone.', sticky: false) unless has_milestone
 
 # -----------------------------------------------------------------------------
+# Docs are regenerated when releasing
+# -----------------------------------------------------------------------------
+has_doc_changes = !git.modified_files.grep(/docs\//).empty?
+if has_doc_changes
+    fail("Documentation cannot be edited directly.")
+    message(%(Docs are automatically regenerated when creating new releases using [Jazzy](https://github.com/realm/jazzy).
+        If you want to update docs, please update the doc comments or markdown files directly.))
+end
+
+# -----------------------------------------------------------------------------
 # Verify correct `pod install` and `bundle install`
 # -----------------------------------------------------------------------------
 def files_changed_as_set(files)
@@ -55,16 +65,40 @@ def files_changed_as_set(files)
     return all_files_changed || no_files_changed
 end
 
-# Verify proper pod install
-pod_files = ["Podfile", "Podfile.lock", "Pods/Manifest.lock"]
-if !files_changed_as_set(pod_files)
-    fail("CocoaPods error: #{pod_files} should all be changed at the same time. Run `pod install` and commit the changes to fix.")
+# Verify correct `pod install`
+pod_locks = ["Podfile.lock", "Pods/Manifest.lock"]
+pod_files = ["Podfile"] + pod_locks
+
+# If Podfile has been modified, so must the lock files.
+did_update_podfile = git.modified_files.include?("Podfile")
+if did_update_podfile && !files_changed_as_set(pod_files)
+    fail("CocoaPods error: #{pod_files} should all be changed at the same time.
+        Run `pod install` and commit the changes to fix.")
 end
 
-# Verify proper bundle install
+# Podfile has not been modified. We must be running `pod update`.
+# Only the two lock files must be changed together.
+if !did_update_podfile && !files_changed_as_set(pod_locks)
+    fail("CocoaPods error: #{pod_locks} should all be changed at the same time.
+        Run `pod install` and commit the changes to fix.")
+end
+
+# Prevent editing `Pods/` source directly.
+# If Pods has changed, then Podfile.lock must have changed too.
+has_modified_pods = !(git.added_files + git.modified_files + git.deleted_files).grep(/Pods/).empty?
+did_update_podlock = git.modified_files.include?("Podfile.lock")
+if has_modified_pods && !did_update_podlock
+  fail("It looks like you are modifying CocoaPods source in `Pods/`. 3rd-party dependencies should not be edited.
+        To update or change pods, please update the `Podfile` and run `pod install`.")
+end
+
+# Verify correct `bundle install`
+# If Gemfile has been modified, so must the lock file.
+did_update_gemfile = git.modified_files.include?("Gemfile")
 gem_files = ["Gemfile", "Gemfile.lock"]
-if !files_changed_as_set(gem_files)
-    fail("Bundler error: #{gem_files} should all be changed at the same time. Run `bundle install` and commit the changes to fix.")
+if did_update_gemfile && !files_changed_as_set(gem_files)
+    fail("Bundler error: #{gem_files} should all be changed at the same time.
+        Run `bundle install` and commit the changes to fix.")
 end
 
 # -----------------------------------------------------------------------------
@@ -89,3 +123,8 @@ end
 swiftlint.verbose = true
 swiftlint.config_file = './.swiftlint.yml'
 swiftlint.lint_files(inline_mode: true, fail_on_error: true)
+
+# -----------------------------------------------------------------------------
+# Jazzy docs - check for new, undocumented symbols
+# -----------------------------------------------------------------------------
+jazzy.check fail: :all

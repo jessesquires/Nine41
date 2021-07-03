@@ -1,8 +1,15 @@
 source 'https://rubygems.org'
 
-gem 'cocoapods', '~> 1.9'
+gem 'cocoapods', '~> 1.10'
 
-gem 'danger'
-gem 'danger-todoist'
+# ------------
+# Danger Setup
+# ------------
+gem 'danger', '~> 8.0'
+
+# general
 gem 'danger-prose'
+
+# xcode, ios, macos
 gem 'danger-swiftlint'
+

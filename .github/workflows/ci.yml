@@ -1,32 +1,39 @@
+# GitHub Actions Virtual Environments
+# https://github.com/actions/virtual-environments/
+
 name: CI
 
 on:
   push:
     branches:
       - main
+    paths:
+      - '.github/workflows/ci.yml'
+      - 'Package*'
+      - 'Sources/**/*.*'
+      - 'Tests/**/*.*'
   pull_request:
     branches:
       - main
+    paths:
+      - '.github/workflows/ci.yml'
+      - 'Package*'
+      - 'Sources/**/*.*'
+      - 'Tests/**/*.*'
 
 env:
-  # https://github.com/actions/virtual-environments/tree/main/images/macos
-  DEVELOPER_DIR: /Applications/Xcode_12.3.app/Contents/Developer
+  DEVELOPER_DIR: /Applications/Xcode_12.5.app/Contents/Developer
 
 jobs:
-  job-build-and-run:
+  main:
     name: Build and Run
-    runs-on: macOS-latest
+    runs-on: macOS-11
     steps:
       - name: git checkout
         uses: actions/checkout@v2
 
       - name: xcode version
         run: xcodebuild -version -sdk
-
-      - name: list simulators
-        run: |
-          xcrun simctl delete unavailable
-          xcrun simctl list
 
       - name: swift build
         run: swift build

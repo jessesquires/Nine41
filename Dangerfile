@@ -27,7 +27,7 @@ end
 # All pull requests should be submitted to main branch
 # -----------------------------------------------------------------------------
 if github.branch_for_base != "main"
-    warn("Pull requests should be submitted to the main branch only.")
+    warn("Pull requests should be submitted to the `main` branch only.")
 end
 
 # -----------------------------------------------------------------------------
@@ -123,8 +123,3 @@ end
 swiftlint.verbose = true
 swiftlint.config_file = './.swiftlint.yml'
 swiftlint.lint_files(inline_mode: true, fail_on_error: true)
-
-# -----------------------------------------------------------------------------
-# Jazzy docs - check for new, undocumented symbols
-# -----------------------------------------------------------------------------
-jazzy.check fail: :all

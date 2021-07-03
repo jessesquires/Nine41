@@ -45,16 +45,6 @@ has_milestone = github.pr_json["milestone"] != nil
 warn('All pull requests should have a milestone.', sticky: false) unless has_milestone
 
 # -----------------------------------------------------------------------------
-# Docs are regenerated when releasing
-# -----------------------------------------------------------------------------
-has_doc_changes = !git.modified_files.grep(/docs\//).empty?
-if has_doc_changes
-    fail("Documentation cannot be edited directly.")
-    message(%(Docs are automatically regenerated when creating new releases using [Jazzy](https://github.com/realm/jazzy).
-        If you want to update docs, please update the doc comments or markdown files directly.))
-end
-
-# -----------------------------------------------------------------------------
 # Verify correct `pod install` and `bundle install`
 # -----------------------------------------------------------------------------
 def files_changed_as_set(files)

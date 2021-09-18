@@ -1,8 +1,8 @@
 # Nine41 ![CI](https://github.com/jessesquires/Nine41/workflows/CI/badge.svg)
 
-[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fjessesquires%2FNine41%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/jessesquires/Nine41) [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fjessesquires%2FNine41%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/jessesquires/Nine41)
-
 *Automate overriding the status bars for all running iOS simulators*
+
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fjessesquires%2FNine41%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/jessesquires/Nine41) <br> [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fjessesquires%2FNine41%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/jessesquires/Nine41)
 
 ![perfect status bar](https://raw.githubusercontent.com/jessesquires/Nine41/main/screenshot.png)
 

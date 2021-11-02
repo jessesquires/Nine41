@@ -7,6 +7,11 @@ NEXT
 
 - TBA
 
+2.3.0
+-----
+
+- Use Xcode 13 and Swift 5.5 ([@jessesquires](https://github.com/jessesquires))
+
 2.2.0
 -----
 

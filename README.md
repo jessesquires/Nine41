@@ -37,7 +37,7 @@ Add `Nine41` to the `dependencies` value of your `Package.swift`.
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/jessesquires/Nine41.git", from: "2.0.1")
+    .package(url: "https://github.com/jessesquires/Nine41.git", from: "2.0.0")
 ]
 ```
 

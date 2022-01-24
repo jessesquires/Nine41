@@ -47,10 +47,12 @@ opt_in_rules:
   - legacy_objc_type
   - file_name
   - file_name_no_space
+  - discouraged_none_name
 
   # style
   - attributes
   - number_separator
+  - operator_usage_whitespace
   - sorted_imports
   - vertical_parameter_alignment_on_call
   - void_return
@@ -62,6 +64,7 @@ opt_in_rules:
   - trailing_closure
   - unneeded_parentheses_in_closure_argument
   - vertical_whitespace_between_cases
+  - prefer_self_in_static_references
 
   # lint
   - overridden_super_call
@@ -75,7 +78,6 @@ opt_in_rules:
   - unused_capture_list
   - duplicate_enum_cases
   - legacy_multiple
-  - balanced_xctest_lifecycle
 
 # Rules run by `swiftlint analyze` (experimental)
 analyzer_rules:
@@ -97,6 +99,9 @@ nesting:
   function_level: 2
   check_nesting_in_closures_and_statements: true
   always_allow_one_type_in_functions: false
+
+identifier_name:
+  allowed_symbols: ['_']
 
 type_contents_order:
   order:

@@ -5,7 +5,7 @@ gem 'cocoapods', '~> 1.0'
 # ------------
 # Danger Setup
 # ------------
-gem 'danger', '~> 9.1'
+gem 'danger', '~> 9.2'
 
 # general
 gem 'danger-prose'

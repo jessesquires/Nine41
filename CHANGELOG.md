@@ -5,8 +5,13 @@ The changelog for `Nine41`. Also see the [releases](https://github.com/jessesqui
 NEXT
 -----
 
-- Xcode 14 and Swift 5.7 ([@jessesquires](https://github.com/jessesquires))
 - TBA
+
+2.3.1
+-----
+
+- Fix Daylight Savings bug ([@jessesquires](https://github.com/jessesquires))
+- Xcode 14 and Swift 5.7 ([@jessesquires](https://github.com/jessesquires))
 
 2.3.0
 -----

@@ -29,7 +29,7 @@ extension Date {
     static func statusBarDateTime() -> Date {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-        dateFormatter.timeZone = TimeZone.current
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: TimeZone.current.secondsFromGMT())
         dateFormatter.locale = Locale.current
         return dateFormatter.date(from: "2007-01-09T09:41:00")!
     }

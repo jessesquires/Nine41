@@ -36,7 +36,7 @@ if which swiftlint >/dev/null; then
         if [[ "$argval" == "fix" ]]; then
             echo "Auto-correcting lint errors..."
             echo ""
-            swiftlint --fix --config $CONFIG && swiftlint --config $CONFIG
+            swiftlint --fix --progress --config $CONFIG && swiftlint --config $CONFIG
             echo ""
         # run analyze
         elif [[ "$argval" == "analyze" ]]; then
@@ -44,7 +44,7 @@ if which swiftlint >/dev/null; then
             echo "Running anaylze..."
             echo ""
             xcodebuild -scheme $SCHEME -project $PROJECT clean build-for-testing > $LOG
-            swiftlint analyze --fix --format --strict --config $CONFIG --compiler-log-path $LOG
+            swiftlint analyze --fix --progress --format --strict --config $CONFIG --compiler-log-path $LOG
             rm $LOG
             echo ""
         else

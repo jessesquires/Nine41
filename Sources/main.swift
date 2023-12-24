@@ -73,9 +73,9 @@ extension Process {
             "--wifiBars", "3",
             "--cellularMode", "active",
             "--cellularBars", "4",
+            "--operatorName", "",
             "--batteryState", "charged",
-            "--batteryLevel", "100",
-            "--operatorName", " "
+            "--batteryLevel", "100"
         )
     }
 }

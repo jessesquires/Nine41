@@ -26,7 +26,7 @@ This script fixes most of those issues. It overrides the status bars for all cur
 ## Requirements
 
 - Swift 5.7+
-- Xcode 14.0+
+- Xcode 15.0+
 - [SwiftLint](https://github.com/realm/SwiftLint)
 
 ## Installation

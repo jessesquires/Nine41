@@ -5,7 +5,7 @@ The changelog for `Nine41`. Also see the [releases](https://github.com/jessesqui
 NEXT
 -----
 
-- TBA
+- Minimum macOS 11 now required.
 
 2.3.1
 -----

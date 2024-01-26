@@ -81,6 +81,11 @@ extension Process {
             "--batteryLevel", "100"
         )
     }
+
+    /// Executes `xcrun simctl status_bar` on the specified device to clear all overrides.
+    func xcrun_clear_status_bar(_ device: String) {
+        self.xcrun("simctl", "status_bar", device, "clear")
+    }
 }
 
 print("Fixing status bars...")

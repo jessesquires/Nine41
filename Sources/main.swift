@@ -12,8 +12,11 @@ import Foundation
 
 #if os(OSX)
 
+/// A date formatter in current time zone and locale.
+/// This is required for simulators to display the same date/time in all time zones.
 let dateFormatter = DateFormatter()
 dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+// Handle daylight savings time
 dateFormatter.timeZone = TimeZone(secondsFromGMT: TimeZone.current.secondsFromGMT())
 dateFormatter.locale = Locale.current
 

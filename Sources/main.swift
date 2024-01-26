@@ -12,18 +12,6 @@ import Foundation
 
 #if os(OSX)
 
-extension String {
-    var nsRange: NSRange {
-        NSRange(location: 0, length: self.count)
-    }
-}
-
-extension StringProtocol {
-    var byTrimmingWhiteSpace: String {
-        self.trimmingCharacters(in: .whitespacesAndNewlines)
-    }
-}
-
 extension Date {
     /// - Returns: 9:41 AM on Tuesday January 9, 2007
     static func statusBarDateTime() -> Date {

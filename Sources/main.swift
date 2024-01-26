@@ -22,6 +22,21 @@ extension Date {
         dateFormatter.locale = Locale.current
         return dateFormatter.date(from: "2007-01-09T09:41:00")!
     }
+
+    /// - Returns: An ISO date/time string for 9:41 AM on Tuesday January 9, 2007
+    /// in the current local and current time zone.
+    static func simulatorDateTimeText() -> String {
+        let isoFormatter = ISO8601DateFormatter()
+        isoFormatter.formatOptions = [
+            .withFullDate,
+            .withDashSeparatorInDate,
+            .withFullTime,
+            .withColonSeparatorInTime,
+            .withFractionalSeconds,
+            .withTimeZone
+        ]
+        return isoFormatter.string(from: Date.statusBarDateTime())
+    }
 }
 
 extension Process {
@@ -52,11 +67,10 @@ extension Process {
     ///
     /// - Parameter device: The device for which status bar values should be overridden.
     func xcrun_fix_status_bar(_ device: String) {
-        let dateTimeText = ISO8601DateFormatter().string(from: Date.statusBarDateTime())
-
+        let dateTimeText = Date.simulatorDateTimeText()
         self.xcrun(
             "simctl", "status_bar", device, "override",
-            "--time", dateTimeText,
+            "--time", "\(dateTimeText)",
             "--dataNetwork", "wifi",
             "--wifiMode", "active",
             "--wifiBars", "3",

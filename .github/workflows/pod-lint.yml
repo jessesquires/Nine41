@@ -28,9 +28,5 @@ jobs:
           gem --version
           bundler --version
 
-      # https://github.com/ruby/setup-ruby
-      - name: ruby setup
-        uses: ruby/setup-ruby@v1
-
       - name: pod lint
         run: pod lib lint --verbose

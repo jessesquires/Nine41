@@ -13,7 +13,8 @@ import Foundation
 #if os(OSX)
 
 extension Date {
-    /// - Returns: 9:41 AM on Tuesday January 9, 2007
+    /// - Returns: The date 9:41 AM on Tuesday January 9, 2007
+    /// in the current local and current time zone.
     static func statusBarDateTime() -> Date {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"

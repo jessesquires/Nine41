@@ -2,10 +2,12 @@
 
 The changelog for `Nine41`. Also see the [releases](https://github.com/jessesquires/Nine41/releases) on GitHub.
 
-NEXT
+3.0.0
 -----
 
-- Minimum macOS 11 now required.
+- Minimum macOS 11.0 now required
+- Fixed "Invalid argument" error for `--time` value in Xcode 15.3 ([#70](https://github.com/jessesquires/Nine41/issues/70), [@jessesquires](https://github.com/jessesquires))
+- Performance optimizations, only create date formatters once ([@jessesquires](https://github.com/jessesquires))
 
 2.3.1
 -----

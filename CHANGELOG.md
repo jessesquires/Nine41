@@ -2,6 +2,12 @@
 
 The changelog for `Nine41`. Also see the [releases](https://github.com/jessesquires/Nine41/releases) on GitHub.
 
+4.0.0
+-----
+
+- Upgraded to Xcode 16 and Swift 6.
+- Dropped support for CocoaPods.
+
 3.0.0
 -----
 

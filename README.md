@@ -25,8 +25,8 @@ This script fixes most of those issues. It overrides the status bars for all cur
 
 ## Requirements
 
-- Swift 5.10+
-- Xcode 15.4+
+- Swift 6.0+
+- Xcode 16.0+
 
 ## Installation
 
@@ -41,12 +41,6 @@ dependencies: [
 ```
 
 Alternatively, you can add the package [directly via Xcode](https://developer.apple.com/documentation/xcode/adding_package_dependencies_to_your_app).
-
-### [CocoaPods](https://cocoapods.org)
-
-```ruby
-pod 'Nine41'
-```
 
 ## Usage
 
@@ -88,12 +82,6 @@ For Swift Package Manager installations:
 
 ```bash
 /usr/bin/xcrun --sdk macosx swift run --package-path "${BUILD_ROOT}/../../SourcePackages/checkouts/Nine41"
-```
-
-For CocoaPods installations:
-
-```bash
-/usr/bin/xcrun --sdk macosx swift "${PODS_ROOT}/Nine41/Sources/main.swift"
 ```
 
 3. Build and run. Note that simulators must be booted for the script to work, which means the very first run may not produce results but the subsequent runs will.

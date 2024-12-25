@@ -36,7 +36,7 @@ Add `Nine41` to the `dependencies` value of your `Package.swift`.
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/jessesquires/Nine41.git", from: "3.0.0")
+    .package(url: "https://github.com/jessesquires/Nine41.git", from: "4.0.0")
 ]
 ```
 
@@ -59,8 +59,8 @@ Example run with 2 open simulators:
 ```bash
 $ nine41
 Fixing status bars...
-✅ iPhone 8, 65A6C323-E74D-452C-B85E-7F576259E022
-✅ iPhone 11, 52E8FAD0-7743-4F85-AA2E-26E4C1275F38
+✅ iPhone 15, 65A6C323-E74D-452C-B85E-7F576259E022
+✅ iPhone 16 Pro, 52E8FAD0-7743-4F85-AA2E-26E4C1275F38
 ```
 
 Example run with no open simulators:
@@ -77,8 +77,6 @@ As described [in this post](https://www.jessesquires.com/blog/2020/04/13/fully-a
 
 1. Add the Swift package to your Xcode project
 2. Add a "Run Script" build phase with the following:
-
-For Swift Package Manager installations:
 
 ```bash
 /usr/bin/xcrun --sdk macosx swift run --package-path "${BUILD_ROOT}/../../SourcePackages/checkouts/Nine41"

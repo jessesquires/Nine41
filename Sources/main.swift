@@ -12,13 +12,10 @@ import Foundation
 
 #if os(OSX)
 
-/// A date formatter in current time zone and locale.
-/// This is required for simulators to display the same date/time in all time zones.
 let dateFormatter = DateFormatter()
 dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-// Handle daylight savings time
-dateFormatter.timeZone = TimeZone(secondsFromGMT: TimeZone.current.secondsFromGMT())
-dateFormatter.locale = Locale.current
+dateFormatter.timeZone = TimeZone(abbreviation: "PST")
+dateFormatter.locale = Locale(identifier: "en-US")
 
 let isoDateFormatter = ISO8601DateFormatter()
 isoDateFormatter.formatOptions = [
@@ -31,7 +28,6 @@ isoDateFormatter.formatOptions = [
 ]
 
 /// An ISO date/time string for 9:41 AM on Tuesday January 9, 2007
-/// in the current local and current time zone.
 let date = dateFormatter.date(from: "2007-01-09T09:41:00")!
 let simulatorDateTimeText = isoDateFormatter.string(from: date)
 

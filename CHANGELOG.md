@@ -2,6 +2,11 @@
 
 The changelog for `Nine41`. Also see the [releases](https://github.com/jessesquires/Nine41/releases) on GitHub.
 
+4.0.2
+-----
+
+- Fix Daylight Savings bug (but good this time) ([#73](https://github.com/jessesquires/Nine41/issues/73), [@joeljfischer](https://github.com/joeljfischer))
+
 4.0.1
 -----
 
